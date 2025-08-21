@@ -15,15 +15,15 @@ async def lifespan(app: FastAPI):
     """
     On application startup/stop: open or close Kakfa connection
     """
-    global producer # needed for the producer to be shared across the project
-    producer = ProducerService()
-    await producer.start()
+    app.state.producer = ProducerService()
+    await app.state.producer.start()
     try:
         yield
     except Exception as err:
         print('Issue with Kafka producer service: ', err)
     finally:
-        await producer.stop()
+        await app.state.producer.stop()
+        del app.state.producer
 
 app = FastAPI(title="Sports Event Microservice",
               lifespan=lifespan)
