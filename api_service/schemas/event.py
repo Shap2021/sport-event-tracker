@@ -27,6 +27,3 @@ class GameEvent(BaseModel):
             ]
         }
     }
-    
-    class Config:
-        from_attributes = True
