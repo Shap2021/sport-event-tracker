@@ -71,8 +71,8 @@ class AuthUtils:
                 raise credential_err
             
             # check to ensure the expire time is still valid
-            #if exp < datetime.now():
-                #raise credential_err
+            if datetime.strptime(exp, "%Y-%m-%d %H:%M:%S") < datetime.utcnow():
+                raise credential_err
             
             # eventually add a pydantic model below
             token_data = TokenVal(id=id)
