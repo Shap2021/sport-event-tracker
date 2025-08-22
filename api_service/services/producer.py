@@ -74,7 +74,3 @@ class ProducerService:
 
     async def flush(self):
         self._producer.flush()
-    
-
-# Define the producer here
-producer: ProducerService | None
