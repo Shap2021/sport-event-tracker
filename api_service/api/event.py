@@ -30,4 +30,4 @@ async def post_event(
         value=event
     )
 
-    return message.Message(message="Event has been queued.")
+    return message.Message(message="Event has been queued.") 
