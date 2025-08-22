@@ -41,9 +41,16 @@ app.include_router(auth.router)
 app.include_router(event.router)
 
 # Define a root or index route
-@app.get("/")
+@app.get("/", include_in_schema=False)
 def root():
     """
     Root or index route for when the application is idle
     """
     return {"message": "Hello World!"}
+
+@app.get("/health", include_in_schema=False)
+def health_check():
+    """
+    Application health check route
+    """
+    return {"status": "ok"}
